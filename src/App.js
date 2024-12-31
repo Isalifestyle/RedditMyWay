@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import { SearchBar } from "./features/search/SearchBar";
+import { SearchProvider } from "../src/SearchContext";
 import { Posts } from './features/posts/Posts';
 function App() {
   return (
     <>
-      <SearchBar/>
+    <SearchProvider>
       <Posts/>
+    </SearchProvider>
 
     </>
   );

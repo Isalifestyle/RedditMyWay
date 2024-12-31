@@ -3,3 +3,30 @@
     display:flex;
     justify-content: flex-start;
 }
+
+.postImg{
+    width: auto;   
+    height: 'auto';    
+    object-fit: 'contain'
+}
+
+.postContainer{
+   background:rgb(74, 68, 68);
+   margin-bottom:100px;
+   width:80%;
+   border-radius: 15px;
+   text-align: center;
+}
+
+.commentsContainer{
+    text-align:left;
+    margin-left: 30px;
+    padding-top: 20px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.commentsContainer:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.commentsAuthor{
+    color:tomato;
+}

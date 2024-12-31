@@ -11,7 +11,15 @@ const initialState =
 const commentsSlice = createSlice({
     name: 'comments',
     initialState,
-    reducers: {},
+    reducers: {
+        clearPopularComments: (state) => {
+            state.popularComments = {};
+        },
+        clearSubredditComments: (state) => {
+            state.subredditComments = {};
+        }
+
+    },
     extraReducers: (builder) =>
     {
         builder
@@ -48,4 +56,5 @@ const commentsSlice = createSlice({
 
 export const availablePopularComments = (state) => state.comments.popularComments;
 export const availableSubredditComments = (state) => state.comments.subredditComments;
+export const { clearPopularComments, clearSubredditComments } = commentsSlice.actions;
 export default commentsSlice.reducer;
