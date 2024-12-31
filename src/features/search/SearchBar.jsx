@@ -1,19 +1,30 @@
-import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { searchInput, clearInput } from './searchSlice';
-export const SearchBar = () => 
+import { selectAllPosts } from '../posts/postsSlice';
+import { selectSubredditPosts } from '../subreddits/subredditsSlice';
+import { useSearch } from "../../SearchContext";
+
+
+
+export const SearchBar = ({ selectedSubreddit }) => 
 {
-    const [userInput, setUserInput] = useState('');
+    const { userInput, setUserInput } = useSearch();
     const dispatch = useDispatch();
+    const popularPosts = useSelector(selectAllPosts);
+    const subredditPosts = useSelector(selectSubredditPosts)
+
 
     const handleSearchSubmit = (e) =>
     {
         e.preventDefault()
-        if(userInput)
+        if(userInput && !selectedSubreddit)
         {
-            dispatch(searchInput(userInput))
+            dispatch(searchInput({searchTerm: userInput, posts: popularPosts}))
         }
-        // dispatch(clearInput())
+        else if (userInput && selectedSubreddit) {
+            dispatch(searchInput({searchTerm: userInput, posts: subredditPosts}))
+        }
+
     }
     
 

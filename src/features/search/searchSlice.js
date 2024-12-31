@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { redditData } from '../../data/dummyData';
 import { selectSubredditPosts } from '../subreddits/subredditsSlice';
 const initialState = {
     searchItem: '',
     results: [],
-    dummyData: redditData
 };
 
 const searchSlice = createSlice({
@@ -12,10 +10,12 @@ const searchSlice = createSlice({
     initialState,
     reducers: {
         searchInput: (state, action) => {
-            state.searchItem = action.payload;
-            const searchTerm = action.payload.toLowerCase();
-            state.results = state.dummyData.filter((post) => post.title.toLowerCase().includes(searchTerm) || post.subreddit.toLowerCase().includes(searchTerm)); 
-        } ,
+            const { searchTerm, posts } = action.payload;
+            state.searchItem = searchTerm;
+            const lowerSearchTerm = searchTerm.toLowerCase();
+            console.log('Search Term', lowerSearchTerm)
+            state.results = posts.filter((post) => post.title.toLowerCase().includes(lowerSearchTerm)); 
+        },
         clearInput : (state) => // Need to incorporate this still not incorprated
             {
                 // state.searchItem = ''

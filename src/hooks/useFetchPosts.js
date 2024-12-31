@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchPopularPosts = createAsyncThunk(
     'posts/fetchPopularPosts',
     async () => {
-        const response = await fetch('https://www.reddit.com/r/popular.json');
+        const response = await fetch('https://www.reddit.com/r/popular.json?raw_json=1');
         const jsonData = await response.json();
         console.log(jsonData.data.children.map(post => post.data));
         return jsonData.data.children.map(post => post.data);
@@ -40,7 +40,7 @@ export const fetchSubredditComments = createAsyncThunk(
 export const fetchPostsBySubreddit = createAsyncThunk(
     'posts/fetchBySubreddit',
     async (subreddit) => {
-        const response = await fetch(`https://www.reddit.com/r/${subreddit}.json`)
+        const response = await fetch(`https://www.reddit.com/r/${subreddit}.json?raw_json=1`)
         const data = await response.json();
         return data.data.children.map((post) => post.data)
     }
