@@ -10,6 +10,7 @@ import { SearchBar } from '../search/SearchBar';
 import { useSearch } from '../../SearchContext';
 import { searchResults } from '../search/searchSlice';
 import { clearPopularComments, clearSubredditComments } from '../comments/commentsSlice';
+import { VideoPlayer } from '../Video_Player/videoPlayer';
 
 export const Posts = () =>
     {
@@ -23,10 +24,11 @@ export const Posts = () =>
     const { userInput } = useSearch();
     const popularCommentsClear = useSelector(clearPopularComments);
     const subredditCommentsClear = useSelector(clearSubredditComments)
+    const [playingVideoId, setPlayingVideoId] = useState(null);
 
-    const [selectedSubreddit, setSelectedSubreddit] = useState();
+
+    const [selectedSubreddit, setSelectedSubreddit] = useState(false);
     const subredditPosts = useSelector(selectSubredditPosts)
-    console.log('subreddit', subredditPosts)
     useEffect(() => {
         if(selectedSubreddit)
         {
@@ -59,7 +61,7 @@ export const Posts = () =>
         setSelectedSubreddit('');
     }
 
-    const filteredPosts = userInput 
+    const filteredPosts = (userInput && selectedSubreddit === false )
         ? posts.filter((post) => 
             post.title.toLowerCase().includes(userInput.toLowerCase())
             )
@@ -78,17 +80,19 @@ export const Posts = () =>
                 <div>
                     <SubredditSidebar handleClearSubreddit = {handleClearSubreddit} selectedSubreddit = {selectedSubreddit} onSubredditClick={handleSubredditClick} subredditPosts = {subredditPosts} />
                 </div>
-                <div className = {styles.mainPostContainer} >
+                <div className = {styles.mainContainer} >
 
                     <h1>{!selectedSubreddit && 'Popular Reddit Posts'}</h1>
                     {status === 'loading' && <p>Loading...</p>}
                     {status === 'failed' && <p>{error}</p>}
                     {(status === 'succeeded' && !selectedSubreddit) && (
-                        posts.map((post) => {
+                        filteredPosts.map((post) => {
                             const postComments = comments[post.permalink] || [];
                             const hasVideo = post.media && post.media.reddit_video;
+                            const dashUrl = hasVideo ? post.media.reddit_video.dash_url : null;
+
                             return (
-                                <div key = {post.id} >
+                                <div className = {styles.mainContainer} key = {post.id} >
 
 
                                         {hasVideo ?
@@ -96,15 +100,8 @@ export const Posts = () =>
                                             <div>
                                                 <h2>{post.title}</h2>
                                             </div>
-                                        <video
-                                                controls
-                                                width="700px"
-                                                height="400px"
-                                                src={post.secure_media.reddit_video.fallback_url}
-                                                type={"video/mp4"}
-                                            >
-                                                Your browser does not support the video tag.
-                                            </video>
+                                                <VideoPlayer dashUrl = {dashUrl}/>
+
                                             <a href={`https://www.reddit.com${post.permalink}`} target="_blank" rel="noopener noreferrer">
                                                 View Post
                                             </a>

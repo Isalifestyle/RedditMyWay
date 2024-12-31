@@ -10,12 +10,16 @@
     object-fit: 'contain'
 }
 
+.mainContainer {
+    width:80%
+}
 .postContainer{
    background:rgb(74, 68, 68);
    margin-bottom:100px;
-   width:80%;
+   width:100%;
    border-radius: 15px;
    text-align: center;
+   
 }
 
 .commentsContainer{

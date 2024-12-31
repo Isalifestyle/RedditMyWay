@@ -19,9 +19,11 @@ export const SearchBar = ({ selectedSubreddit }) =>
         e.preventDefault()
         if(userInput && !selectedSubreddit)
         {
+            console.log('PopularPost dispatch')
             dispatch(searchInput({searchTerm: userInput, posts: popularPosts}))
         }
         else if (userInput && selectedSubreddit) {
+            console.log('Subreddit Post dispatch')
             dispatch(searchInput({searchTerm: userInput, posts: subredditPosts}))
         }
 
