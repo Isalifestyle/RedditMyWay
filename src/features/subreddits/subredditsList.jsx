@@ -6,6 +6,7 @@ import { availableSubredditComments } from '../comments/commentsSlice';
 import { useSearch } from '../../SearchContext';
 import styles from './subreddit.module.css';
 import { clearPopularComments, clearSubredditComments } from '../comments/commentsSlice';
+import { VideoPlayer } from '../Video_Player/videoPlayer';
 
 export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubreddit, handleClearSubreddit }) => 
 {
@@ -16,6 +17,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
     const subredditComments = useSelector(availableSubredditComments)
     const { userInput } = useSearch()
     const subredditCommentsClear = useSelector(clearSubredditComments)
+    const [playingVideoId, setPlayingVideoId] = useState(null);
 
     useEffect(() => {
         if(status === 'idle'){
@@ -34,7 +36,9 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
         }
     }
 
-    const filteredPosts = userInput 
+
+
+    const filteredPosts = (userInput && selectedSubreddit)
     ? subredditPosts.filter((post) => 
         post.title.toLowerCase().includes(userInput.toLowerCase())
         )
@@ -66,18 +70,14 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                     <div> {filteredPosts.map((subredditPost) => {
                         const postComments = subredditComments[subredditPost.permalink] || []
                         const hasVideo = subredditPost.media && subredditPost.media.reddit_video;
+                        const dashUrl = hasVideo ? subredditPost.media.reddit_video.dash_url : null;
                         return (
                         <div key = {subredditPost.id}>
                             {hasVideo 
-                            ?  <video
-                            controls
-                            width="700px"
-                            height="400px"
-                            src={subredditPost.secure_media.reddit_video.fallback_url}
-                            type={"video/mp4"}
-                        >
-                            Your browser does not support the video tag.
-                        </video>
+                            ? 
+                              <VideoPlayer key = {subredditPost.id} dashUrl = {dashUrl}
+                              postId={subredditPost.id}
+                              setPlayingVideoId={setPlayingVideoId}  />
                             :
                             <div>
                                 <h2>{subredditPost.title}</h2>
