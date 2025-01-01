@@ -39,8 +39,8 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
 
 
     const filteredPosts = (userInput && selectedSubreddit)
-    ? subredditPosts.filter((post) => 
-        post.title.toLowerCase().includes(userInput.toLowerCase())
+    ? subredditPosts.filter((subredditPost) => 
+        subredditPost.title.toLowerCase().includes(userInput.toLowerCase())
         )
     : subredditPosts;
     
@@ -72,29 +72,54 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                         const hasVideo = subredditPost.media && subredditPost.media.reddit_video;
                         const dashUrl = hasVideo ? subredditPost.media.reddit_video.dash_url : null;
                         return (
-                        <div key = {subredditPost.id}>
+                        <div className = {styles.mainContainer} key = {subredditPost.id}>
                             {hasVideo 
                             ? 
-                              <VideoPlayer key = {subredditPost.id} dashUrl = {dashUrl}
-                              postId={subredditPost.id}
-                              setPlayingVideoId={setPlayingVideoId}  />
+                            <div className = {styles.postContainer} >
+                            
+                                    <div>
+                                        <h2>{subredditPost.title}</h2>
+                                    </div>
+                                    <VideoPlayer key = {subredditPost.id} dashUrl = {dashUrl}
+                                    postId={subredditPost.id}
+                                    setPlayingVideoId={setPlayingVideoId}  />
+
+                                        <a href={`https://www.reddit.com${subredditPost.permalink}`} target="_blank" rel="noopener noreferrer">
+                                            View Post
+                                        </a>
+                                          <button onClick = {() => handleSubredditFetchComments(subredditPost.permalink)}> Load Comments</button>
+                                    {postComments && postComments.map((comment, index) => (
+                                    <div key = {index} className = {styles.commentsContainer}>
+                                        <h2 className = {styles.commentsAuthor} >{comment.author}</h2>
+                                        <h3> {comment.body}</h3>
+                                        <hr></hr>
+                                    </div>
+                                    ))}
+                              </div>
                             :
-                            <div>
-                                <h2>{subredditPost.title}</h2>
-                                {subredditPost.preview && 
-                                <img src = {subredditPost.preview.images[0].resolutions[subredditPost.preview.images[0].resolutions.length - 1].url} alt = {subredditPost.title} />}
+                            <div className = {styles.postContainer} >
+                                <div>
+                                    <h2>{subredditPost.title}</h2>
+                                </div>
+                                <div className = {styles.postImg}>
+                                    {subredditPost.preview && 
+                                    <img src = {subredditPost.preview.images[0].resolutions[subredditPost.preview.images[0].resolutions.length - 1].url} alt = {subredditPost.title} />}
+                                </div>
                                 <p>By: {subredditPost.author}</p>
                                 <a href={`https://www.reddit.com${subredditPost.permalink}`} target="_blank" rel="noopener noreferrer">
                                     View Post
                                 </a>
                                 <button onClick = {() => handleSubredditFetchComments(subredditPost.permalink)}> Load Comments</button>
+                                {postComments && postComments.map((comment, index) => (
+                                        <div key = {index} className = {styles.commentsContainer}>
+                                            <h2 className = {styles.commentsAuthor}>{comment.author}</h2>
+                                            <h3>{comment.body}</h3>
+                                            <hr></hr>
+
+                                        </div>
+                                    ))}
                             </div> }
                     
-                                {postComments && postComments.map((comment, index) => (
-                                    <div key = {index} style = {{marginLeft: '20px', marginTop: '10px'}}>
-                                        <h2><strong>{comment.author}</strong>: {comment.body}</h2>
-                                    </div>
-                                    ))}
                                 </div>
                                 )}
                             )} 

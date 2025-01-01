@@ -26,6 +26,7 @@ const commentsSlice = createSlice({
             //Popular posts comments (default view)
             .addCase(fetchComments.pending, (state) => 
             {
+                console.log('Loading testing')
                 state.popularStatus = 'loading'
             })
             .addCase(fetchComments.fulfilled, (state, action) =>
@@ -56,5 +57,7 @@ const commentsSlice = createSlice({
 
 export const availablePopularComments = (state) => state.comments.popularComments;
 export const availableSubredditComments = (state) => state.comments.subredditComments;
+export const getPopularCommentsStatus = (state) => state.comments.popularStatus;
+export const getSubredditCommentsStatus = (state) =>state.comments.subredditStatus
 export const { clearPopularComments, clearSubredditComments } = commentsSlice.actions;
 export default commentsSlice.reducer;

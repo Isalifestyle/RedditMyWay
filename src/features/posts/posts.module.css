@@ -1,7 +1,8 @@
 
 .general{
     display:flex;
-    justify-content: flex-start;
+    justify-content: center;
+    
 }
 
 .postImg{
@@ -11,26 +12,99 @@
 }
 
 .mainContainer {
-    width:80%
+    width:1500px;
+    transition: box-shadow 0.3s ease-in-out;
+    
+}
+.MainHeading{
+    margin-top:30px;
+}
+.title{
+    max-width:900px;
+}
+.generalPostContainer{
+    display:flex;
+    justify-content:column;
+    background:rgb(74, 68, 68);
+    margin-bottom:100px;
+    width:1300px;
+    border-radius: 15px;
+    transition: box-shadow 0.3s ease-in-out;
+    text-align: center;
+
 }
 .postContainer{
-   background:rgb(74, 68, 68);
-   margin-bottom:100px;
-   width:100%;
-   border-radius: 15px;
+    display: flex;
+    width:1200px;
+    flex-direction: column;
+    justify-content: center;  /* Center horizontally */
+    align-items: center; 
    text-align: center;
+
    
+}
+.generalPostContainer:hover {
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.4); 
+}
+.authorLink{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.description{
+    width:1240px;
+}
+.postComments {
+    text-align:right;
 }
 
 .commentsContainer{
+    display:flex;
     text-align:left;
     margin-left: 30px;
     padding-top: 20px;
     transition: box-shadow 0.3s ease-in-out;
+    flex-direction:column;
 }
 .commentsContainer:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* Increased spread and darker shadow */
 }
 .commentsAuthor{
     color:tomato;
+}
+.likesVideos{
+    text-align:center;
+    width:10px;
+    margin-left:30px;
+    margin-top:10px;
+    margin-right:30px;
+}
+.likes{
+    text-align:center;
+    width:10px;
+    margin-left:30px;
+    margin-top:10px;
+
+
+
+}
+
+.svgs{
+    display:flex;
+    justify-content: flex-end;  /* Aligns content to the right */
+    align-items: center; 
+    fill: black; 
+}
+.svgs svg:active {
+    fill: red;  /* Change to red on click */
+}
+
+.svgsImage
+{
+    cursor: pointer;
+  
+}
+
+.commentNumber{
+    margin-left:5px;
 }
