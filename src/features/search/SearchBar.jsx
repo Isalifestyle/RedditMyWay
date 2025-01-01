@@ -3,7 +3,7 @@ import { searchInput, clearInput } from './searchSlice';
 import { selectAllPosts } from '../posts/postsSlice';
 import { selectSubredditPosts } from '../subreddits/subredditsSlice';
 import { useSearch } from "../../SearchContext";
-
+import styles from "../search/searchBar.module.css";
 
 
 export const SearchBar = ({ selectedSubreddit }) => 
@@ -32,13 +32,15 @@ export const SearchBar = ({ selectedSubreddit }) =>
 
     return (
         <>
-            <form onSubmit = {handleSearchSubmit}>
+            <form onSubmit={handleSearchSubmit} className={styles.searchContainer}>
                 <input
-                onChange = {(e) => setUserInput(e.target.value)}
-                type = "text"
-                value = {userInput}/>
-                
-            <button type = 'submit' >Search</button>
+                    className={styles.searchBar}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    type="text"
+                    value={userInput}
+                    placeholder="Search..."
+                />
+                <button type='submit' className={styles.searchButton}>Search</button>
             </form>
         </>
     )

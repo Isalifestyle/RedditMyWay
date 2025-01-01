@@ -2,9 +2,7 @@
     margin: 0;
     padding: 0;
 }
-.general{
-    display:flex;
-}
+
 .default 
 {
     display:flex;
@@ -61,4 +59,42 @@
     display:block; 
     border: none;              /* Remove default border */
     height: 2px;
+}
+
+
+
+.general{
+    display:flex;
+    justify-content: flex-start;
+}
+
+.postImg{
+    width: auto;   
+    height: 'auto';    
+    object-fit: 'contain'
+}
+
+.mainContainer {
+    width:110%
+}
+.postContainer{
+   background:rgb(74, 68, 68);
+   margin-bottom:100px;
+   width:100%;
+   border-radius: 15px;
+   text-align: center;
+   
+}
+
+.commentsContainer{
+    text-align:left;
+    margin-left: 30px;
+    padding-top: 20px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.commentsContainer:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increased spread and darker shadow */
+}
+.commentsAuthor{
+    color:tomato;
 }
