@@ -31,10 +31,11 @@ export const Posts = () =>
     const subredditCommentStatus = useSelector(getSubredditCommentsStatus);
     const popularCommentsStatus = useSelector(getPopularCommentsStatus)
 
-    console.log('popularCommentsStatus',popularCommentsStatus)
     
     const [selectedSubreddit, setSelectedSubreddit] = useState(false);
     const subredditPosts = useSelector(selectSubredditPosts)
+    let permalinkStorage = '';
+    
     useEffect(() => {
 
         if(selectedSubreddit)
@@ -47,24 +48,27 @@ export const Posts = () =>
         }
     }, [status, dispatch, selectedSubreddit]);
 
-    const handleFetchComments = (permalink) =>
-    {
-
-        setSelectedComments(!selectedComments);
-        setLoadingComments({[permalink]: selectedComments})
+    const handleFetchComments = (permalink) => { // Not sure why this implementation worked for the load comments will need to look into tommorow
+        const isSelected = !!selectedComments[permalink];
+        
+        // Update the state immediately by computing the next state
+        const nextSelectedComments = {
+            ...selectedComments,
+            [permalink]: !isSelected
+        };
     
-
-        if(selectedComments === false){
-
-        dispatch(fetchComments(permalink));
-        setLoadingComments(prevState => ({ ...prevState, [permalink]: popularCommentsStatus }));
-
+        setSelectedComments(nextSelectedComments);
+        setLoadingComments((prevState) => ({
+            ...prevState,
+            [permalink]: !isSelected,
+        }));
+    
+        if (!isSelected) {
+            dispatch(fetchComments(permalink));
+        } else {
+            dispatch(popularCommentsClear);
         }
-        else if (posts && (selectedComments === true)){
-            dispatch(popularCommentsClear)
-            setLoadingComments(prevState => ({ ...prevState, [permalink]: 'idle' }));
-        }
-    }
+    };
 
     const handleSubredditClick = (subreddit) => {
         setSelectedSubreddit(subreddit);
@@ -89,8 +93,6 @@ export const Posts = () =>
 
     return (
     <div>
-        <></>
-        {popularCommentsStatus === 'loading' &&  <SkeletonPost /> }
             <div>
                 <SearchBar selectedSubreddit = {selectedSubreddit} />
             </div>
@@ -108,7 +110,7 @@ export const Posts = () =>
                             const postComments = comments[post.permalink] || [];
                             const hasVideo = post.media && post.media.reddit_video;
                             const dashUrl = hasVideo ? post.media.reddit_video.dash_url : null;
-
+                            let permalinkStorage = post.permalink;
                             return (
                                 <div className = {styles.mainContainer} key = {post.id} >
 
@@ -191,7 +193,10 @@ export const Posts = () =>
                                                 <div className = {styles.postComments}>
                                                     <div className = {styles.svgs}>
                                                           
-                                                        ****<div className = {styles.svgsImage} onClick = {() => handleFetchComments(post.permalink)}>
+                                                        <div className = {styles.svgsImage} onClick = {() => handleFetchComments(post.permalink)} style={{
+                                                            pointerEvents: popularCommentsStatus === 'loading' ? 'none' : 'auto',
+                                                            opacity: loadingComments[post.permalink] ? 0.5 : 1
+                                                            }}>
                                                             <svg  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
                                                         </div>
                                                         <div className = {styles.commentNumber}>
@@ -202,8 +207,9 @@ export const Posts = () =>
                                                     
                                                 </div>
                                             </div>
-                          
-                                            {popularCommentsStatus === 'loading'&& !!loadingComments[post.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
+                                            <div style={{ minHeight: loadingComments[post.permalink] === 'loading' ? '1px' : 'auto' }}>
+
+                                            {popularCommentsStatus === 'loading'&& !!loadingComments[post.permalink] === true && !!selectedComments[post.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
                                             <div key={index} className={styles.commentsContainer}>
                                                     <>
                                                         <h2 className={styles.commentsAuthor}>{comment.author}</h2>
@@ -212,6 +218,7 @@ export const Posts = () =>
                                                     </>
                                             </div>
                                             )))}
+                                            </div>
 
                                         </div>
                                     </div>
