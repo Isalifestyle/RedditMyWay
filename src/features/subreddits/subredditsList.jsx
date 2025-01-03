@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllSubreddits } from './subredditsSlice';
 import { fetchSubreddits, fetchSubredditComments } from '../../hooks/useFetchPosts';
-import { availableSubredditComments } from '../comments/commentsSlice';
+import { availableSubredditComments, getSubredditCommentsStatus } from '../comments/commentsSlice';
 import { useSearch } from '../../SearchContext';
 import styles from './subreddit.module.css';
 import { clearPopularComments, clearSubredditComments } from '../comments/commentsSlice';
@@ -11,13 +11,17 @@ import { VideoPlayer } from '../Video_Player/videoPlayer';
 export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubreddit, handleClearSubreddit }) => 
 {
     const dispatch = useDispatch();
-    const [selectedComments, setSelectedComments] = useState(false)
+    const [selectedComments, setSelectedComments] = useState({});
+    const [loadingComments, setLoadingComments] = useState({});
+    const [arrowClicked, setArrowClicked] = useState('')
     const subreddits = useSelector(selectAllSubreddits);
     const status = useSelector((state) => state.subreddits.status)
     const subredditComments = useSelector(availableSubredditComments)
     const { userInput } = useSearch()
     const subredditCommentsClear = useSelector(clearSubredditComments)
     const [playingVideoId, setPlayingVideoId] = useState(null);
+    const subredditCommentStatus = useSelector(getSubredditCommentsStatus);
+
 
     useEffect(() => {
         if(status === 'idle'){
@@ -27,11 +31,24 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
 
     const handleSubredditFetchComments = (permalink) =>
     {
+        const isSelected = !!selectedComments[permalink];
+        
+        // Update the state immediately by computing the next state
+        const nextSelectedComments = {
+            ...selectedComments,
+            [permalink]: !isSelected
+        };
+        setSelectedComments(nextSelectedComments);
+        setLoadingComments((prevState) => ({
+            ...prevState,
+            [permalink]: !isSelected,
+        }));
+    
         setSelectedComments(!selectedComments);
-        if( selectedComments === false ){
+        if(!isSelected){
         dispatch(fetchSubredditComments(permalink))
         }
-        else if (selectedSubreddit && (selectedComments === true)) {
+        else {
             dispatch(subredditCommentsClear)
         }
     }
@@ -43,6 +60,13 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
         subredditPost.title.toLowerCase().includes(userInput.toLowerCase())
         )
     : subredditPosts;
+
+    const handleArrowClick = (postId, color) => {
+        setArrowClicked((prev) => ({
+            ...prev,
+            [postId]: color,
+        }));
+    };
     
 
     return (
@@ -76,7 +100,15 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                             {hasVideo 
                             ? 
                             <div className = {styles.postContainer} >
-                            
+
+                                <div >
+                                    <div className = {styles.likes} >
+                                        <h3> {subredditPost.ups}</h3>
+                                        <svg onClick = {() => handleArrowClick(subredditPost.id,'green')} xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[subredditPost.id] === 'green' ? '#34D399' : '#e8eaed'}  ><path d="M440-80v-647L256-544l-56-56 280-280 280 280-56 57-184-184v647h-80Z"/></svg>
+                                        <svg onClick = {() => handleArrowClick(subredditPost.id,'red')} xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[subredditPost.id] === 'red' ? '#F87171' : '#e8eaed'}><path d="M480-80 200-360l56-56 184 183v-647h80v647l184-184 56 57L480-80Z"/></svg>
+                                    </div>
+                                </div>
+                                <div className = {styles.mainInfo}>
                                     <div>
                                         <h2>{subredditPost.title}</h2>
                                     </div>
@@ -94,22 +126,45 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                         <h3> {comment.body}</h3>
                                         <hr></hr>
                                     </div>
-                                    ))}
+                                    ))} </div>
                               </div>
                             :
                             <div className = {styles.postContainer} >
                                 <div>
+                                 <div className = {styles.likes}>
+                                    <h3 > {subredditPost.ups}</h3>
+        
+                                    <svg onClick = {() => handleArrowClick(subredditPost.id,'green')} xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[subredditPost.id] === 'green' ? '#34D399' : '#e8eaed'}  ><path d="M440-80v-647L256-544l-56-56 280-280 280 280-56 57-184-184v647h-80Z"/></svg>
+                                    <svg onClick = {() => handleArrowClick(subredditPost.id,'red')} xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[subredditPost.id] === 'red' ? '#F87171' : '#e8eaed'}><path d="M480-80 200-360l56-56 184 183v-647h80v647l184-184 56 57L480-80Z"/></svg>
+                                </div>
+                                </div>
+                                <div>
+                                <div className = {styles.mainInfo}>
                                     <h2>{subredditPost.title}</h2>
                                 </div>
                                 <div className = {styles.postImg}>
                                     {subredditPost.preview && 
                                     <img src = {subredditPost.preview.images[0].resolutions[subredditPost.preview.images[0].resolutions.length - 1].url} alt = {subredditPost.title} />}
                                 </div>
-                                <p>By: {subredditPost.author}</p>
-                                <a href={`https://www.reddit.com${subredditPost.permalink}`} target="_blank" rel="noopener noreferrer">
-                                    View Post
-                                </a>
-                                <button onClick = {() => handleSubredditFetchComments(subredditPost.permalink)}> Load Comments</button>
+                                <div className = {styles.postInfo}>
+                                    <div className = {styles.postDescription}> 
+                                        <p>By: {subredditPost.author}</p>
+                                        <a href={`https://www.reddit.com${subredditPost.permalink}`} target="_blank" rel="noopener noreferrer">
+                                            View Post
+                                        </a>
+                                    </div>
+                                    <div className = {styles.commentsButton}>
+                                        <div className = {styles.svgsImage} onClick = {() => handleSubredditFetchComments(subredditPost.permalink)} style={{
+                                                            pointerEvents: subredditCommentStatus === 'loading' ? 'none' : 'auto',
+                                                            opacity: loadingComments[subredditPost.permalink] ? 0.5 : 1
+                                                            }}>
+                                            <svg  xmlns="http://www.w3.org/2000/svg" cursor height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
+                                        </div>    
+                                        <div>
+                                            <h4>{subredditPost.num_comments}</h4>
+                                        </div>
+                                    </div>
+                                </div>
                                 {postComments && postComments.map((comment, index) => (
                                         <div key = {index} className = {styles.commentsContainer}>
                                             <h2 className = {styles.commentsAuthor}>{comment.author}</h2>
@@ -117,8 +172,9 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                             <hr></hr>
 
                                         </div>
-                                    ))}
+                                    ))}</div>
                             </div> }
+                            
                     
                                 </div>
                                 )}
