@@ -15,9 +15,9 @@ import { SkeletonPost } from "../skeletonPost/skeletonPost";
 
 export const Posts = () =>
     {
-        const [selectedComments, setSelectedComments] = useState({});
-
+    const [selectedComments, setSelectedComments] = useState({});
     const [loadingComments, setLoadingComments] = useState({}); // Track loading state per post
+    const [arrowClicked, setArrowClicked] = useState('')
     const dispatch = useDispatch();
     const posts = useSelector(selectAllPosts);
     const status = useSelector(getPostsStatus);
@@ -31,10 +31,10 @@ export const Posts = () =>
     const subredditCommentStatus = useSelector(getSubredditCommentsStatus);
     const popularCommentsStatus = useSelector(getPopularCommentsStatus)
 
+
     
     const [selectedSubreddit, setSelectedSubreddit] = useState(false);
     const subredditPosts = useSelector(selectSubredditPosts)
-    let permalinkStorage = '';
     
     useEffect(() => {
 
@@ -85,10 +85,12 @@ export const Posts = () =>
             )
         : posts;
 
-        console.log('Filtered Posts:', filteredPosts)
 
-        const getLastResolution = (resolutions) => {
-            return resolutions[resolutions.length - 1];  
+        const handleArrowClick = (postId, color) => {
+            setArrowClicked((prev) => ({
+                ...prev,
+                [postId]: color,
+            }));
         };
 
     return (
@@ -97,7 +99,7 @@ export const Posts = () =>
                 <SearchBar selectedSubreddit = {selectedSubreddit} />
             </div>
             <div className = {styles.general} >
-                <div>
+                <div className = {styles.subredditSidebar}>
                     <SubredditSidebar handleClearSubreddit = {handleClearSubreddit} selectedSubreddit = {selectedSubreddit} onSubredditClick={handleSubredditClick} subredditPosts = {subredditPosts} />
                 </div>
                 <div className = {styles.mainContainer} >
@@ -119,7 +121,9 @@ export const Posts = () =>
                                     <div className = {styles.generalPostContainer} >
                                             <div className = {styles.general} >
                                                 <div className = {styles.likesVideos}>
-                                                    <h3>{post.ups}</h3>
+                                                    <h3 className = {styles.likesVideosH3}>{post.ups}</h3>
+                                                    <svg onClick = {() => handleArrowClick(post.id,'green')} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[post.id] === 'green' ? '#34D399' : '#e8eaed'}  ><path d="M440-80v-647L256-544l-56-56 280-280 280 280-56 57-184-184v647h-80Z"/></svg>
+                                                    <svg onClick = {() => handleArrowClick(post.id,'red')} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[post.id] === 'red' ? '#F87171' : '#e8eaed'}><path d="M480-80 200-360l56-56 184 183v-647h80v647l184-184 56 57L480-80Z"/></svg>
                                                 </div>
                                                 <div className = {styles.postContainer}>
                                                     <div  className = {styles.title}>
@@ -138,7 +142,7 @@ export const Posts = () =>
                                                         <div className = {styles.postComments}>
                                                     <div className = {styles.svgs}>
                                                         <div className = {styles.svgsImage} onClick = {() => handleFetchComments(post.permalink)}>
-                                                            <svg  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
+                                                            <svg  xmlns="http://www.w3.org/2000/svg" cursor height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
                                                         </div>
                                                         <div className = {styles.commentNumber}>
                                                             <h4>{post.num_comments}</h4>
@@ -150,14 +154,15 @@ export const Posts = () =>
                                                      </div>
                                                     
                                                 
-                                            {postComments && postComments.map((comment, index) => (
-                                            <div key = {index} className = {styles.commentsContainer}>
-                                                <h2 className = {styles.commentsAuthor} >{comment.author}</h2>
-                                                <h3>{comment.body}</h3>
-                                                <hr></hr>
+                                                     {popularCommentsStatus === 'loading'&& !!loadingComments[post.permalink] === true && !!selectedComments[post.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
+                                            <div key={index} className={styles.commentsContainer}>
+                                                    <>
+                                                        <h2 className={styles.commentsAuthor}>{comment.author}</h2>
+                                                        <h3>{comment.body}</h3>
+                                                        <hr />
+                                                    </>
                                             </div>
-                                            
-                                             ))}
+                                            )))}
                                              </div>
                                              </div>
                                         </div>
@@ -167,15 +172,23 @@ export const Posts = () =>
                                     :
                                     <div className = {styles.generalPostContainer}>
                                     <div className = {styles.general}>
-                                        <div className = {styles.likes}>
+                                        <div className = {styles.likesVideos}>
                                             <h3>{post.ups}</h3>
+                                            
+                                            <div className = {styles.Arrow}>
+                                            <svg onClick = {() => handleArrowClick(post.id,'green')} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[post.id] === 'green' ? '#34D399' : '#e8eaed'}  ><path d="M440-80v-647L256-544l-56-56 280-280 280 280-56 57-184-184v647h-80Z"/></svg>
+                                            </div>
+                                            <div className = {styles.Arrow}>
+                                            <svg onClick = {() => handleArrowClick(post.id,'red')} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[post.id] === 'red' ? '#F87171' : '#e8eaed'}><path d="M480-80 200-360l56-56 184 183v-647h80v647l184-184 56 57L480-80Z"/></svg>
+
+                                            </div>
                                         </div>
                                         <div className = {styles.postContainer}>
                                         <div className = {styles.title}>
                                             <h2>{post.title}</h2>
                                         </div>
                                         <div className = {styles.postImg}>
-                                        {post.preview && (
+                                        {post.preview?.images?.[0]?.resolutions?.[post.preview.images[0].resolutions.length - 1]?.url && (
                                                 <img
                                                     src = {post.preview.images[0].resolutions[post.preview.images[0].resolutions.length - 1].url} alt={post.title}
                                                     className = {styles.postImg}
@@ -207,7 +220,6 @@ export const Posts = () =>
                                                     
                                                 </div>
                                             </div>
-                                            <div style={{ minHeight: loadingComments[post.permalink] === 'loading' ? '1px' : 'auto' }}>
 
                                             {popularCommentsStatus === 'loading'&& !!loadingComments[post.permalink] === true && !!selectedComments[post.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
                                             <div key={index} className={styles.commentsContainer}>
@@ -218,8 +230,6 @@ export const Posts = () =>
                                                     </>
                                             </div>
                                             )))}
-                                            </div>
-
                                         </div>
                                     </div>
                                     </div>

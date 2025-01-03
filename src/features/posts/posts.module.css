@@ -1,4 +1,6 @@
-
+svg {
+    cursor:pointer;
+}
 .general{
     display:flex;
     justify-content: center;
@@ -14,6 +16,7 @@
 .mainContainer {
     width:1500px;
     transition: box-shadow 0.3s ease-in-out;
+    margin-right:100px;
     
 }
 .MainHeading{
@@ -27,6 +30,7 @@
     justify-content:column;
     background:rgb(74, 68, 68);
     margin-bottom:100px;
+   
     width:1300px;
     border-radius: 15px;
     transition: box-shadow 0.3s ease-in-out;
@@ -46,10 +50,19 @@
 .generalPostContainer:hover {
     box-shadow: 0 0 16px rgba(255, 255, 255, 0.4); 
 }
+.subredditSidebar
+{
+    margin-right:20px;
+}
 .authorLink{
     display:flex;
     justify-content: center;
     flex-direction: column;
+    width:150px;
+    margin-left:550px;
+}
+.authorLink a{
+    
 }
 .description{
     width:1240px;
@@ -74,10 +87,15 @@
 }
 .likesVideos{
     text-align:center;
-    width:10px;
-    margin-left:30px;
+    width:40px;
+    margin-left:10px;
     margin-top:10px;
-    margin-right:30px;
+    margin-right:10px;
+  
+}
+
+.likesVideosH3{
+    margin-right:110px !important
 }
 .likes{
     text-align:center;
@@ -108,3 +126,5 @@
 .commentNumber{
     margin-left:5px;
 }
+
+/* Target the SVGs inside the upArrow and downArrow classes */

@@ -13,6 +13,7 @@
 .sidebarwhole{
     margin-right:20px;
     margin-top:35px;
+    margin-left:20px;
     border: 2px solid rgb(17, 180, 225);
     border-radius: 10px;
     height:1580px;
@@ -75,14 +76,19 @@
 }
 
 .mainContainer {
-    width:110%
+    width:110%;
+    transition: box-shadow 0.3s ease-in-out;
+    display:flex;
+    flex-direction:column;
 }
+
 .postContainer{
    background:rgb(74, 68, 68);
    margin-bottom:100px;
-   width:100%;
+   width:1400px;
    border-radius: 15px;
    text-align: center;
+   display:flex;
    
 }
 
@@ -97,4 +103,44 @@
 }
 .commentsAuthor{
     color:tomato;
+}
+.mainInfo{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width:1325px;
+}
+
+.likes{
+    display:flex;
+    flex-direction:column;
+    width:75px;
+    align-items:center;
+}
+
+.postInfo{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+ 
+}
+.postDescription{
+    width:200px;
+    align-items:center;
+    justify-content:center;
+
+}
+.commentsButton{
+    width:200px;
+    align-items:flex-end;
+    margin-left:1100px;
+    display:flex;
+}
+
+.svgsImage
+{
+    cursor: pointer;
+  
 }
