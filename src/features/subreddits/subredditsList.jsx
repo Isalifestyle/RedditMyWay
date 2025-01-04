@@ -7,6 +7,7 @@ import { useSearch } from '../../SearchContext';
 import styles from './subreddit.module.css';
 import { clearPopularComments, clearSubredditComments } from '../comments/commentsSlice';
 import { VideoPlayer } from '../Video_Player/videoPlayer';
+import {SkeletonPost} from '../skeletonPost/skeletonPost';
 
 export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubreddit, handleClearSubreddit }) => 
 {
@@ -44,11 +45,12 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
             [permalink]: !isSelected,
         }));
     
-        setSelectedComments(!selectedComments);
         if(!isSelected){
+            console.log('fetching commentss')
         dispatch(fetchSubredditComments(permalink))
         }
         else {
+            console.log('Clearing comments')
             dispatch(subredditCommentsClear)
         }
     }
@@ -115,18 +117,37 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                     <VideoPlayer key = {subredditPost.id} dashUrl = {dashUrl}
                                     postId={subredditPost.id}
                                     setPlayingVideoId={setPlayingVideoId}  />
-
-                                        <a href={`https://www.reddit.com${subredditPost.permalink}`} target="_blank" rel="noopener noreferrer">
-                                            View Post
-                                        </a>
-                                          <button onClick = {() => handleSubredditFetchComments(subredditPost.permalink)}> Load Comments</button>
-                                    {postComments && postComments.map((comment, index) => (
-                                    <div key = {index} className = {styles.commentsContainer}>
-                                        <h2 className = {styles.commentsAuthor} >{comment.author}</h2>
-                                        <h3> {comment.body}</h3>
-                                        <hr></hr>
+                                    <div className = {styles.description}>
+                                    <div className = {styles.postInfo}>
+                                        <div className = {styles.postDescription}> 
+                                            <p>By: {subredditPost.author}</p>
+                                            <a href={`https://www.reddit.com${subredditPost.permalink}`} target="_blank" rel="noopener noreferrer">
+                                                View Post
+                                            </a>
+                                        </div>
+                                            <div className = {styles.commentsButton}>
+                                            <div className = {styles.svgsImage} onClick = {() => handleSubredditFetchComments(subredditPost.permalink)} style={{
+                                                                pointerEvents: subredditCommentStatus === 'loading' ? 'none' : 'auto',
+                                                                opacity: loadingComments[subredditPost.permalink] ? 0.5 : 1
+                                                                }}>
+                                                <svg  xmlns="http://www.w3.org/2000/svg" cursor height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
+                                            </div>    
+                                            <div className = {styles.numComments}>
+                                                <h4>{subredditPost.num_comments}</h4>
+                                            </div>
+                                        </div>
                                     </div>
-                                    ))} </div>
+                                        
+                                          {subredditCommentStatus === 'loading'&& !!loadingComments[subredditPost.permalink] === true && !!selectedComments[subredditPost.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
+                                            <div key={index} className={styles.commentsContainer}>
+                                                    <>
+                                                        <h2 className={styles.commentsAuthor}>{comment.author}</h2>
+                                                        <h3>{comment.body}</h3>
+                                                        <hr />
+                                                    </>
+                                            </div>
+                                            )))} </div>
+                                    </div>
                               </div>
                             :
                             <div className = {styles.postContainer} >
@@ -153,26 +174,29 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                             View Post
                                         </a>
                                     </div>
-                                    <div className = {styles.commentsButton}>
-                                        <div className = {styles.svgsImage} onClick = {() => handleSubredditFetchComments(subredditPost.permalink)} style={{
-                                                            pointerEvents: subredditCommentStatus === 'loading' ? 'none' : 'auto',
-                                                            opacity: loadingComments[subredditPost.permalink] ? 0.5 : 1
-                                                            }}>
-                                            <svg  xmlns="http://www.w3.org/2000/svg" cursor height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
-                                        </div>    
-                                        <div>
-                                            <h4>{subredditPost.num_comments}</h4>
+                                    <div>
+                                        <div className = {styles.commentsButton}>
+                                            <div className = {styles.svgsImage} onClick = {() => handleSubredditFetchComments(subredditPost.permalink)} style={{
+                                                                pointerEvents: subredditCommentStatus === 'loading' ? 'none' : 'auto',
+                                                                opacity: loadingComments[subredditPost.permalink] ? 0.5 : 1
+                                                                }}>
+                                                <svg  xmlns="http://www.w3.org/2000/svg" cursor height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
+                                            </div>    
+                                            <div className = {styles.numComments}>
+                                                <h4>{subredditPost.num_comments}</h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                {postComments && postComments.map((comment, index) => (
-                                        <div key = {index} className = {styles.commentsContainer}>
-                                            <h2 className = {styles.commentsAuthor}>{comment.author}</h2>
-                                            <h3>{comment.body}</h3>
-                                            <hr></hr>
-
-                                        </div>
-                                    ))}</div>
+                                {subredditCommentStatus === 'loading'&& !!loadingComments[subredditPost.permalink] === true && !!selectedComments[subredditPost.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
+                                            <div key={index} className={styles.commentsContainer}>
+                                                    <>
+                                                        <h2 className={styles.commentsAuthor}>{comment.author}</h2>
+                                                        <h3>{comment.body}</h3>
+                                                        <hr />
+                                                    </>
+                                            </div>
+                                            )))}</div>
                             </div> }
                             
                     
@@ -183,7 +207,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                      </div>
                      
                 }
-                {selectedSubreddit && <button onClick = {handleClearSubreddit}>Back</button>}
+                {selectedSubreddit && <button className = {styles.button} onClick = {handleClearSubreddit}>Back To Main Posts</button>}
             </div>
 
             

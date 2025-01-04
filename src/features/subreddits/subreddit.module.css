@@ -94,9 +94,10 @@
 
 .commentsContainer{
     text-align:left;
-    margin-left: 30px;
     padding-top: 20px;
     transition: box-shadow 0.3s ease-in-out;
+    width:1300px;
+    margin-right:20px;
 }
 .commentsContainer:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increased spread and darker shadow */
@@ -135,12 +136,45 @@
 .commentsButton{
     width:200px;
     align-items:flex-end;
+    text-align:righT;
     margin-left:1100px;
     display:flex;
+
+}
+
+.numComments{
+    margin-bottom:8px;
+    margin-left:5px;
 }
 
 .svgsImage
 {
     cursor: pointer;
+    margin-left:145px;
   
 }
+
+.button {
+    background-color: #70bde1; /* Green background */
+    color: white; /* White text */
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom:10px;
+  }
+  
+  .button:hover {
+    background-color: #a19ae3; /* Darker green on hover */
+  }
+  
+  .button:active {
+    transform: scale(0.98); /* Slight press effect */
+  }
+  
+  .button:focus {
+    outline: 2px solid #a98ae1;
+    outline-offset: 2px;
+  }
