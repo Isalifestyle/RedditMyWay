@@ -76,14 +76,14 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
             <div className = {styles.sidebarwhole} >
                 <h2>Popular Subreddits</h2>
                 <hr className = {styles.customLineh2}/>
-                <div >
+                <div className = {styles.subredditBar}>
                         {subreddits.map((subreddit) => (
                             <React.Fragment key={subreddit.id}>
                                 <div className = {styles.sidebar} key = {subreddit.id} onClick = {() => onSubredditClick(subreddit.display_name)}>
                                     <img styles = {styles.sidebar} src = {subreddit.icon_img || 'https://www.redditinc.com/assets/images/site/reddit-logo.png' } 
                                         alt = {subreddit.display_name} 
                                         />
-                                    <p>{subreddit.display_name_prefixed}</p>
+                                    <p className = {styles.pwrap}>{subreddit.display_name_prefixed}</p>
                                 </div>
                                 <hr className = {styles.customLine}/>
                             </React.Fragment>
