@@ -178,3 +178,25 @@
     outline: 2px solid #a98ae1;
     outline-offset: 2px;
   }
+
+
+  @media (min-width: 951px) and (max-width:1300px){
+    .subredditBar{
+        width:200px;
+    }
+    .pwrap{
+        word-wrap:break-word;
+        font-size:12px;
+    }
+  }
+
+  @media (min-width: 1401px) and (max-width:1649px){
+
+    .subredditBar{
+        width:250px;
+    }
+    .pwrap{
+        word-wrap:break-word;
+        font-size:15px;
+    }
+  }

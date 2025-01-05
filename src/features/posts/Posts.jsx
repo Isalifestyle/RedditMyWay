@@ -12,6 +12,7 @@ import { searchResults } from '../search/searchSlice';
 import { clearPopularComments, clearSubredditComments } from '../comments/commentsSlice';
 import { VideoPlayer } from '../Video_Player/videoPlayer';
 import { SkeletonPost } from "../skeletonPost/skeletonPost";
+import PostImage, { imagePost } from '../imagePost/imagePost';
 
 export const Posts = () =>
     {
@@ -98,9 +99,9 @@ export const Posts = () =>
         {status === 'loading'
         ? <SkeletonPost/>
         :
-         <div>
-         <div>
-             <SearchBar selectedSubreddit = {selectedSubreddit} />
+         <div className = {styles.base}>
+         <div className = {styles.subredditGeneral}>
+             <SearchBar className = {styles.subredditGeneral} selectedSubreddit = {selectedSubreddit} />
          </div>
          <div className = {styles.general} >
              <div className = {styles.subredditSidebar}>
@@ -134,7 +135,7 @@ export const Posts = () =>
                                                      <h2>{post.title}</h2>
                                                  </div>
                                                      <VideoPlayer dashUrl = {dashUrl}/>
-                                                     <div>
+                                                     <div className = {styles.descriptionVideos}>
                                                  <div className = {styles.description}>
                                                      <div className = {styles.authorLink}>
                                                          <p>By: {post.author}</p>
@@ -142,7 +143,6 @@ export const Posts = () =>
                                                              View Post
                                                          </a>
                                                      </div>
-                                                     <div className = {styles.postComments}>
                                                      <div className = {styles.postComments}>
                                                  <div className = {styles.svgs}>
                                                      <div className = {styles.svgsImage} onClick = {() => handleFetchComments(post.permalink)}>
@@ -153,11 +153,9 @@ export const Posts = () =>
                                                      </div>
                                                  </div>
                                              </div>
-
-                                                     </div>
-                                                  </div>
                                                  
-                                             
+                                                  </div>
+                                                  <div className = {styles.generalCommentContainer}>
                                                   {popularCommentsStatus === 'loading'&& !!loadingComments[post.permalink] === true && !!selectedComments[post.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
                                          <div key={index} className={styles.commentsContainer}>
                                                  <>
@@ -166,7 +164,8 @@ export const Posts = () =>
                                                      <hr />
                                                  </>
                                          </div>
-                                         )))}
+                                         )))} </div>
+
                                           </div>
                                           </div>
                                      </div>
@@ -192,14 +191,9 @@ export const Posts = () =>
                                          <h2>{post.title}</h2>
                                      </div>
                                      <div className = {styles.postImg}>
-                                     {post.preview?.images?.[0]?.resolutions?.[post.preview.images[0].resolutions.length - 1]?.url && (
-                                             <img
-                                                 src = {post.preview.images[0].resolutions[post.preview.images[0].resolutions.length - 1].url} alt={post.title}
-                                                 className = {styles.postImg}
-                                             />
-                                         )}
+                                         <PostImage styles = {styles} post = {post}/>
                                      </div>
-                                     <div>
+                                     <div className = {styles.description}>
                                          <div className = {styles.description}>
                                              <div className = {styles.authorLink}>
                                                  <p>By: {post.author}</p>
