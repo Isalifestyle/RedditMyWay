@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';import dashjs from 'dashjs';
+import styles from "./videoPlayer.module.css";
 
 export const VideoPlayer = ({ dashUrl, postId }) => {
     const videoRef = useRef(null);
@@ -19,12 +20,10 @@ export const VideoPlayer = ({ dashUrl, postId }) => {
 
 
     return (
-        <div>
+        <div className = {styles.videoContainer}>
             <video
                 ref={videoRef}
                 controls
-                width="700px"
-                height="400px"
                 type="video/mp4"
 
             >

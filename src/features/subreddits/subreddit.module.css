@@ -1,5 +1,5 @@
 
-@media (min-width:1650px){
+@media (min-width:1850px){
 * {
     margin: 0;
     padding: 0;
@@ -93,6 +93,16 @@
    display:flex;
    
 }
+.postContainerVideo{
+    background:rgb(74, 68, 68);
+    margin-bottom:100px;
+    width:1400px;
+    border-radius: 15px;
+    text-align: center;
+    display:flex;
+    
+}
+
 
 .commentsContainer{
     text-align:left;
@@ -143,6 +153,14 @@
     display:flex;
 
 }
+.commentsButtonVideos{
+    width:200px;
+    align-items:flex-end;
+    text-align:righT;
+    margin-left:1100px;
+    display:flex;
+
+}
 
 .numComments{
     margin-bottom:8px;
@@ -183,7 +201,7 @@
 }
 
 
-  @media (min-width: 1401px) and (max-width:1750px){
+  @media (min-width: 1401px) and (max-width:1849px){
 
     * {
         margin: 0;
@@ -279,6 +297,15 @@
        display:flex;
        
     }
+    .postContainerVideo{
+        background:rgb(74, 68, 68);
+        margin-bottom:100px;
+        width:1000px;
+        border-radius: 15px;
+        text-align: center;
+        display:flex;
+    }
+    
     
     .commentsContainer{
         text-align:left;
@@ -330,6 +357,15 @@
         display:flex;
     
     }
+    .commentsButtonVideos{
+        width:200px;
+        align-items:flex-end;
+        text-align:righT;
+        margin-left:725px;
+        display:flex;
+    
+    }
+    
     
     .numComments{
         margin-bottom:8px;
@@ -370,7 +406,7 @@
 }
 
 
-@media (min-width: 951px) and (max-width:1400px){
+@media (min-width: 1124px) and (max-width:1400px){
   
     * {
         margin: 0;
@@ -427,6 +463,14 @@
         width: 100%;               /* Line width */
         display:block        /* Spacing around the line */
       }
+
+      .fullPost{
+        width:600px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center
+      }
     
     .customLineh2{
         background-color:tomato;
@@ -460,19 +504,35 @@
     .postContainer{
        background:rgb(74, 68, 68);
        margin-bottom:100px;
-       width:1000px;
+       width:800px;
        border-radius: 15px;
        text-align: center;
        display:flex;
        
+    }
+    .postContainerVideo{
+        background:rgb(74, 68, 68);
+        margin-bottom:100px;
+        width:800px;
+        border-radius: 15px;
+        text-align: center;
+        display:flex;
     }
     
     .commentsContainer{
         text-align:left;
         padding-top: 20px;
         transition: box-shadow 0.3s ease-in-out;
-        width:900px;
+        width:600px;
         margin-right:20px;
+    }
+    .generalCommentContainer{
+        text-align:left;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        width:600px;
+        margin-right:20px;
+        background-color:green;
     }
     .commentsContainer:hover {
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increased spread and darker shadow */
@@ -485,7 +545,15 @@
         flex-direction:column;
         justify-content:center;
         align-items:center;
-        width:900px;
+        width:400px;
+    }
+    .mainInfoVideo{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        width:400px;
+        margin-left:150px;
     }
     
     .likes{
@@ -500,7 +568,7 @@
         flex-direction:column;
         align-items:center;
         justify-content:center;
-        width:900px;
+        width:600px;
      
     }
     .postDescription{
@@ -510,10 +578,18 @@
     
     }
     .commentsButton{
-        width:200px;
+        width:30px;
         align-items:flex-end;
         text-align:righT;
-        margin-left:725px;
+        margin-left:25px;
+        display:flex;
+    
+    }
+    .commentsButtonVideos{
+        width:30px;
+        align-items:flex-end;
+        text-align:righT;
+        margin-right:25px;
         display:flex;
     
     }
@@ -526,7 +602,8 @@
     .svgsImage
     {
         cursor: pointer;
-        margin-left:145px;
+        margin-left:345px;
+        width:auto;
       
     }
     
@@ -554,4 +631,244 @@
         outline: 2px solid #a98ae1;
         outline-offset: 2px;
       }
+
   }
+
+
+@media (min-width: 900px) and (max-width:1123px){
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .default 
+    {
+        display:flex;
+        flex-direction: column; 
+    
+    }
+    
+    .sidebarwholeSubreddit{
+        margin-right:10px;
+        margin-top:35px;
+       margin-left:0px;
+        border: 2px solid rgb(17, 180, 225);
+        border-radius: 10px;
+        height:1580px;
+    }
+    
+    .sidebar
+    {
+        transition: background-color 0.5s ease;
+        width:250px;
+        height:50px;
+        cursor: pointer;
+        display:flex;
+        justify-content:flex-start;
+        padding-top:10px;
+    
+    
+        
+    }
+    .sidebar:hover
+    {
+        background-color:rgb(17, 180, 225);
+    }
+    .sidebar img
+    {
+        width:50px;
+        height:50px;
+        margin-right:10px;
+        margin-left:5px;
+        margin-bottom:5px;
+    }
+    
+    .customLine{
+    
+        border: none;              /* Remove default border */
+        height: 2px;               /* Line thickness */
+        background-color: rgb(255, 255, 255);   /* Line color */
+        width: 100%;               /* Line width */
+        display:block        /* Spacing around the line */
+      }
+
+      .fullPost{
+        width:500px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center
+      }
+      .videoFullPost{
+        margin-right:100px;
+      }
+    
+    .customLineh2{
+        background-color:tomato;
+        width: 100%;  
+        display:block; 
+        border: none;              /* Remove default border */
+        height: 2px;
+    }
+    
+    
+    
+    .general{
+        display:flex;
+        justify-content: flex-start;
+        width:auto;
+    }
+    
+    .postImg{
+        width: auto;   
+        height: 'auto';    
+        object-fit: 'contain'
+    }
+    
+    .mainContainer {
+        width:100%;
+        transition: box-shadow 0.3s ease-in-out;
+        display:flex;
+        flex-direction:column;
+    }
+    
+    .postContainer{
+       background:rgb(74, 68, 68);
+       margin-bottom:100px;
+       width:600px;
+       border-radius: 15px;
+       text-align: center;
+       display:flex;
+       
+    }
+    .postContainerVideo{
+        background:rgb(74, 68, 68);
+        margin-bottom:100px;
+        width:600px;
+        border-radius: 15px;
+        text-align: center;
+        display:flex;
+    }
+    
+    .commentsContainer{
+        text-align:left;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        width:500px;
+        
+    }
+    /* .commentsContainerVideos{
+        text-align:left;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        width:500px;
+        margin-left:100px;
+    } */
+    .generalCommentContainer{
+        text-align:left;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        width:600px;
+        
+    }
+    .commentsContainer:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increased spread and darker shadow */
+    }
+    .commentsAuthor{
+        color:tomato;
+    }
+    .mainInfo{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        width:400px;
+    }
+    .mainInfoVideo{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        width:600px;
+        
+    }
+    
+    .likes{
+        display:flex;
+        flex-direction:column;
+        width:75px;
+        align-items:center;
+    }
+    
+    .postInfo{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        width:600px;
+        
+     
+    }
+    .postDescription{
+        width:200px;
+        align-items:center;
+        justify-content:center;
+    
+    }
+    .commentsButton{
+        width:30px;
+        align-items:flex-end;
+        text-align:righT;
+        margin-left:25px;
+        display:flex;
+    
+    }
+    .commentsButtonVideos{
+        width:30px;
+        align-items:flex-end;
+        text-align:righT;
+        display:flex;
+        margin-right:50px;
+    
+    }
+    
+    .numComments{
+        margin-bottom:8px;
+        margin-left:5px;
+    }
+    
+    .svgsImage
+    {
+        cursor: pointer;
+        margin-left:210px;
+        width:auto;
+      
+    }
+    
+    .button {
+        background-color: #70bde1; /* Green background */
+        color: white; /* White text */
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom:10px;
+      }
+      
+      .button:hover {
+        background-color: #a19ae3; /* Darker green on hover */
+      }
+      
+      .button:active {
+        transform: scale(0.98); /* Slight press effect */
+      }
+      
+      .button:focus {
+        outline: 2px solid #a98ae1;
+        outline-offset: 2px;
+      }
+
+}

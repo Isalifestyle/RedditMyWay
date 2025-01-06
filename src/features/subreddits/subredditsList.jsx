@@ -103,7 +103,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                         <div className = {styles.mainContainer} key = {subredditPost.id}>
                             {hasVideo 
                             ? 
-                            <div className = {styles.postContainer} >
+                            <div className = {styles.postContainerVideo} >
 
                                 <div >
                                     <div className = {styles.likes} >
@@ -112,7 +112,8 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                         <svg onClick = {() => handleArrowClick(subredditPost.id,'red')} xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[subredditPost.id] === 'red' ? '#F87171' : '#e8eaed'}><path d="M480-80 200-360l56-56 184 183v-647h80v647l184-184 56 57L480-80Z"/></svg>
                                     </div>
                                 </div>
-                                <div className = {styles.mainInfo}>
+                                <div className = {styles.mainInfoVideo}>
+                                    <div className = {styles.videoFullPost}>
                                     <div>
                                         <h2>{subredditPost.title}</h2>
                                     </div>
@@ -127,7 +128,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                                 View Post
                                             </a>
                                         </div>
-                                            <div className = {styles.commentsButton}>
+                                            <div className = {styles.commentsButtonVideos}>
                                             <div className = {styles.svgsImage} onClick = {() => handleSubredditFetchComments(subredditPost.permalink)} style={{
                                                                 pointerEvents: subredditCommentStatus === 'loading' ? 'none' : 'auto',
                                                                 opacity: loadingComments[subredditPost.permalink] ? 0.5 : 1
@@ -150,6 +151,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                             </div>
                                             )))} </div>
                                     </div>
+                                </div>
                               </div>
                             :
                             <div className = {styles.postContainer} >

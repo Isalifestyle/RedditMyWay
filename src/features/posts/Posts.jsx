@@ -218,7 +218,7 @@ export const Posts = () =>
                                                  
                                              </div>
                                          </div>
-
+                                        <div className = {styles.generalCommentContainer}>
                                          {popularCommentsStatus === 'loading'&& !!loadingComments[post.permalink] === true && !!selectedComments[post.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
                                          <div key={index} className={styles.commentsContainer}>
                                                  <>
@@ -227,7 +227,7 @@ export const Posts = () =>
                                                      <hr />
                                                  </>
                                          </div>
-                                         )))}
+                                         )))} </div>
                                      </div>
                                  </div>
                                  </div>
