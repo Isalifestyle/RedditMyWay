@@ -1,3 +1,4 @@
+@media (min-width: 1650px) {
 /* Default styles for desktop */
 .general {
     display: flex;
@@ -126,101 +127,151 @@
     margin-left: 5px;
 }
 
-
-@media (min-width: 1401px) and (max-width:1649px){
- 
-    .mainContainer {
-        width: 95%;             /* Make the container take up full width */
-        margin-right: 0;         /* Remove margin-right */
-    }
-
-    .subredditSidebar {
-        order: -1;              /* Move the sidebar to the top */
-        margin-right: 0; 
-        margin-left:250px;       /* Remove any right margin */
-        width: 100%;            /* Sidebar takes up the full width */
-        margin-bottom: 20px;    /* Add some space between sidebar and posts */
-    }
-    .description {
-        width: 1100px;
-        margin-right:150px;
-    }
-    .descriptionVideos {
-        width: 1100px;
-       
-    }
-    
-.postContainer {
-    display: flex;
-    width: 900px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.generalPost{
+    display:flex;
+}
+.commentsContainerVideos{
+    text-align:left;
+}
 }
 
-
-    .generalCommentContainer{
-         width:1000px;
-    }
-    .commentsContainer {
+@media (min-width: 1401px) and (max-width:1649px){
+    .general {
         display: flex;
-        text-align: left;
-        margin-left: 30px;
-        padding-top: 20px;
-        transition: box-shadow 0.3s ease-in-out;
-        flex-direction: column;
-    }
-    .svgs {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        fill: black;
-        margin-bottom:5px;
-    }
-    /* Actual size of comments container */
-    .commentsContainer {
-        display: flex;
-        text-align: left;
-        margin-left: 30px;
-        padding-top: 20px;
-        transition: box-shadow 0.3s ease-in-out;
-        flex-direction: column;
-        width:1000px;
+        justify-content: center;
     }
     
-    .commentsContainer:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    .postImg {
+        width: auto;
+        height: auto;
+        object-fit: contain;
     }
-    .general{
-        width:1050px;
+    
+    .mainContainer {
+        width: auto;
+        transition: box-shadow 0.3s ease-in-out;
+        margin-right: 100px;
     }
+    
+    .MainHeading {
+        margin-top: 30px;
+    }
+    
+    .title {
+        max-width: 900px;
+    }
+    
     .generalPostContainer {
         display: flex;
         justify-content: column;
         background: rgb(74, 68, 68);
         margin-bottom: 100px;
-        width: 1125px;
+        width: 1100px;
         border-radius: 15px;
         transition: box-shadow 0.3s ease-in-out;
         text-align: center;
     }
+    
     .postContainer {
         display: flex;
-        width: 800px;
+        width: 1000px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
     }
-
-    .likesVideos{
-        margin-left:0px;
-        margin-right:175px;
+    
+    .generalPostContainer:hover {
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
     }
-    .svgs{
-        margin-right:75px;
+    
+    .subredditSidebar {
+        margin-right: 20px;
+        margin-left:175px;
     }
+    
+    
+    .authorLink {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 150px;
+        margin-left: 400px;
+    }
+    
+    .authorLink a {
+    }
+    
+    .description {
+        width: 1000px;
+    }
+    
+    .postComments {
+        text-align: right;
+    }
+    
+    .commentsContainer {
+        display: flex;
+        text-align: left;
+        margin-left: 30px;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        flex-direction: column;
+    }
+    
+    .commentsContainer:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    
+    .commentsAuthor {
+        color: tomato;
+    }
+    
+    .likesVideos {
+        text-align: center;
+        width: 40px;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    
+    .likesVideosH3 {
+        margin-right: 110px !important;
+    }
+    
+    .likes {
+        text-align: center;
+        width: 10px;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+    
+    .svgs {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        fill: black;
+    }
+    
+    .svgs svg:active {
+        fill: red;
+    }
+    
+    .svgsImage {
+        cursor: pointer;
+    }
+    
+    .commentNumber {
+        margin-left: 5px;
+    }
+    
+    .generalPost{
+        display:flex;
+    }
+    .commentsContainerVideos{
+        text-align:left;
+    }
+   
 }
 
 

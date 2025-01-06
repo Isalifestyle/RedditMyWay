@@ -8,6 +8,8 @@ import styles from './subreddit.module.css';
 import { clearPopularComments, clearSubredditComments } from '../comments/commentsSlice';
 import { VideoPlayer } from '../Video_Player/videoPlayer';
 import {SkeletonPost} from '../skeletonPost/skeletonPost';
+import PostImage, { imagePost } from '../imagePost/imagePost';
+
 
 export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubreddit, handleClearSubreddit }) => 
 {
@@ -73,7 +75,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
 
     return (
         <div className = {styles.general} >
-            <div className = {styles.sidebarwhole} >
+            <div className = {styles.sidebarwholeSubreddit} >
                 <h2>Popular Subreddits</h2>
                 <hr className = {styles.customLineh2}/>
                 <div className = {styles.subredditBar}>
@@ -90,10 +92,10 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                         ))}
                 </div>
             </div>
-            <div>
+            <div >
             <h1>{selectedSubreddit && `Posts from ${selectedSubreddit}`}</h1>
                 {(filteredPosts && selectedSubreddit) &&
-                    <div> {filteredPosts.map((subredditPost) => {
+                    <div className = {styles.subredditPostCont}> {filteredPosts.map((subredditPost) => {
                         const postComments = subredditComments[subredditPost.permalink] || []
                         const hasVideo = subredditPost.media && subredditPost.media.reddit_video;
                         const dashUrl = hasVideo ? subredditPost.media.reddit_video.dash_url : null;
@@ -159,13 +161,13 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                     <svg onClick = {() => handleArrowClick(subredditPost.id,'red')} xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="24px" fill={arrowClicked[subredditPost.id] === 'red' ? '#F87171' : '#e8eaed'}><path d="M480-80 200-360l56-56 184 183v-647h80v647l184-184 56 57L480-80Z"/></svg>
                                 </div>
                                 </div>
-                                <div>
+                                <div className = {styles.fullPost}> 
                                 <div className = {styles.mainInfo}>
                                     <h2>{subredditPost.title}</h2>
                                 </div>
                                 <div className = {styles.postImg}>
-                                    {subredditPost.preview && 
-                                    <img src = {subredditPost.preview.images[0].resolutions[subredditPost.preview.images[0].resolutions.length - 1].url} alt = {subredditPost.title} />}
+                                    
+                                    <PostImage styles = {styles} post = {subredditPost}/>
                                 </div>
                                 <div className = {styles.postInfo}>
                                     <div className = {styles.postDescription}> 

@@ -99,7 +99,7 @@ export const Posts = () =>
         {status === 'loading'
         ? <SkeletonPost/>
         :
-         <div className = {styles.base}>
+         <div >
          <div className = {styles.subredditGeneral}>
              <SearchBar className = {styles.subredditGeneral} selectedSubreddit = {selectedSubreddit} />
          </div>
@@ -157,7 +157,7 @@ export const Posts = () =>
                                                   </div>
                                                   <div className = {styles.generalCommentContainer}>
                                                   {popularCommentsStatus === 'loading'&& !!loadingComments[post.permalink] === true && !!selectedComments[post.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
-                                         <div key={index} className={styles.commentsContainer}>
+                                         <div key={index} className={styles.commentsContainerVideos}>
                                                  <>
                                                      <h2 className={styles.commentsAuthor}>{comment.author}</h2>
                                                      <h3>{comment.body}</h3>
@@ -174,7 +174,7 @@ export const Posts = () =>
 
                                  :
                                  <div className = {styles.generalPostContainer}>
-                                 <div className = {styles.general}>
+                                 <div className = {styles.generalPost}>
                                      <div className = {styles.likesVideos}>
                                          <h3>{post.ups}</h3>
                                          
