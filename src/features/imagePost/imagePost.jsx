@@ -6,7 +6,7 @@ const PostImage = ({ post, styles }) => {
     useEffect(() => {
         const calculateImageIndex = () => {
             const width = window.innerWidth;
-            if (width < 600) {
+            if (width < 1124) {
                 setImageIndex(post.preview?.images[0].resolutions.length - 4); // Small image for mobile
             } else if (width < 1648) {
                 setImageIndex(post.preview?.images[0].resolutions.length - 3); // Medium image for tablets

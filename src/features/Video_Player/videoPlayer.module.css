@@ -1,0 +1,13 @@
+@media (min-width: 1124px){
+    .videoContainer video {
+        width:700px;
+        height:400px;
+    }
+}
+
+@media (min-width: 900px) and (max-width:1123px){
+    .videoContainer video{
+        width:400px;
+        height:200px;
+    }
+}
