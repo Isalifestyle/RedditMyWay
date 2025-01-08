@@ -42,6 +42,49 @@
         transform: translateX(100%);
     }
 }
+@media (min-width:1849px){
+    .skeletonPost {
+        background-color: #e0e0e0;
+        border-radius: 8px;
+        margin: 16px 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow: hidden;
+        position: relative;
+        width:1200px;
+    }
+}
+
+@media (min-width:1648px) and (max-width:1849px){
+    .skeletonPost {
+        background-color: #e0e0e0;
+        border-radius: 8px;
+        margin: 16px 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow: hidden;
+        position: relative;
+        width:750px;
+    }
+
+    
+    .skeletonPost::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(24, 14, 14, 0.5), rgba(255,255,255,0));
+        animation: shimmer 1.5s infinite;
+       
+    }
+    
+}
 @media (min-width: 1401px) and (max-width:1649px){
 
     .skeletonPost {
@@ -135,3 +178,91 @@
     }
 }
 
+@media (max-width: 900px){
+    .skeletonPost {
+        background-color: #e0e0e0;
+        border-radius: 8px;
+        margin: 16px 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow: hidden;
+        position: relative;
+        width:450px;
+        margin-left:30px;
+        
+    }
+
+    
+    .skeletonPost::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(24, 14, 14, 0.5), rgba(255,255,255,0));
+        animation: shimmer 1.5s infinite;
+       
+    }
+}
+@media (min-width: 350px) and (max-width: 600px) {
+    .skeletonPost {
+        background-color: #e0e0e0;
+        border-radius: 8px;
+        margin: 16px 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow: hidden;
+        position: relative;
+        width:200px;
+        margin-left:60px;
+        
+    }
+
+    
+    .skeletonPost::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(24, 14, 14, 0.5), rgba(255,255,255,0));
+        animation: shimmer 1.5s infinite;
+       
+    }
+}
+
+@media (max-width: 349px){
+    .skeletonPost {
+        background-color: #e0e0e0;
+        border-radius: 8px;
+        margin: 16px 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow: hidden;
+        position: relative;
+        width:150px;
+        margin-left:60px;
+        
+    }
+
+    
+    .skeletonPost::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(24, 14, 14, 0.5), rgba(255,255,255,0));
+        animation: shimmer 1.5s infinite;
+       
+    }
+}

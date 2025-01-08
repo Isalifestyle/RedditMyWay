@@ -114,7 +114,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                 </div>
                                 <div className = {styles.mainInfoVideo}>
                                     <div className = {styles.videoFullPost}>
-                                    <div>
+                                    <div className = {styles.videoTitle}>
                                         <h2>{subredditPost.title}</h2>
                                     </div>
                                     <VideoPlayer key = {subredditPost.id} dashUrl = {dashUrl}
@@ -129,7 +129,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                             </a>
                                         </div>
                                             <div className = {styles.commentsButtonVideos}>
-                                            <div className = {styles.svgsImage} onClick = {() => handleSubredditFetchComments(subredditPost.permalink)} style={{
+                                            <div className = {styles.svgsImageVideos} onClick = {() => handleSubredditFetchComments(subredditPost.permalink)} style={{
                                                                 pointerEvents: subredditCommentStatus === 'loading' ? 'none' : 'auto',
                                                                 opacity: loadingComments[subredditPost.permalink] ? 0.5 : 1
                                                                 }}>
@@ -142,7 +142,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                     </div>
                                         
                                           {subredditCommentStatus === 'loading'&& !!loadingComments[subredditPost.permalink] === true && !!selectedComments[subredditPost.permalink] === true ? <SkeletonPost/> :  (postComments && postComments.map((comment, index) => (
-                                            <div key={index} className={styles.commentsContainer}>
+                                            <div key={index} className={styles.commentsContainerVideos}>
                                                     <>
                                                         <h2 className={styles.commentsAuthor}>{comment.author}</h2>
                                                         <h3>{comment.body}</h3>

@@ -11,3 +11,20 @@
         height:200px;
     }
 }
+
+@media (min-width: 350px) and (max-width: 600px) {
+
+    .videoContainer video{
+        width:200px;
+        height:200px;
+        margin-left:60px;
+    }
+}
+
+@media (max-width: 349px){
+    .videoContainer video{
+        width:150px;
+        height:150px;
+        margin-left:60px;
+    }
+}
