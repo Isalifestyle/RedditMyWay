@@ -1,3 +1,9 @@
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    margin: 0; /* Remove any default margin that could cause overflow */
+}
 @media (min-width: 1850px) {
 /* Default styles for desktop */
 .general {
@@ -76,6 +82,7 @@
     display: flex;
     text-align: left;
     margin-left: 30px;
+    word-wrap: break-word;
     padding-top: 20px;
     transition: box-shadow 0.3s ease-in-out;
     flex-direction: column;
@@ -213,6 +220,7 @@
     .commentsContainer {
         display: flex;
         text-align: left;
+        word-wrap: break-word;
         margin-left: 30px;
         padding-top: 20px;
         transition: box-shadow 0.3s ease-in-out;
@@ -358,6 +366,7 @@
     .commentsContainer {
         display: flex;
         text-align: left;
+        word-wrap: break-word;
         padding-top: 20px;
         transition: box-shadow 0.3s ease-in-out;
         flex-direction: column;
@@ -512,6 +521,7 @@
     .commentsContainer {
         display: flex;
         text-align: left;
+        word-wrap: break-word;
         padding-top: 20px;
         transition: box-shadow 0.3s ease-in-out;
         flex-direction: column;
@@ -520,6 +530,7 @@
     .commentsContainerVideos{
         display: flex;
         text-align: left;
+        word-wrap: break-word;
         padding-top: 20px;
         transition: box-shadow 0.3s ease-in-out;
         flex-direction: column;
@@ -584,3 +595,492 @@
     
     }
 }
+
+
+@media (min-width: 601px) and (max-width: 899px) {
+    .general {
+        display: flex;
+        justify-content: center;
+        flex-direction:column;
+    }
+    
+    .postImg {
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+    
+    .mainContainer {
+        width: auto;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    
+    .MainHeading {
+        margin-top: 30px;
+    }
+    
+    .title {
+        max-width: 900px;
+        margin-left:20px;
+    }
+    
+    .generalPostContainer {
+        display: flex;
+        justify-content: column;
+        background: rgb(74, 68, 68);
+        margin-bottom: 100px;
+        width: 600px;
+        border-radius: 15px;
+        transition: box-shadow 0.3s ease-in-out;
+        text-align: center;
+    }
+    
+    .postContainer {
+        display: flex;
+        width: 500px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+   
+    
+    .generalPostContainer:hover {
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+    }
+    
+    .subredditSidebar {
+        margin-left:0px;        
+    }
+
+    
+    .authorLink {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 150px;
+        margin-left: 400px;
+    }
+    
+    .authorLink a {
+    }
+    
+    .description {
+        width: 500px;
+        margin-right:450px;
+    }
+    
+    .postComments {
+        text-align: right;
+    }
+    
+    .commentsContainer {
+        display: flex;
+        text-align: left;
+        word-wrap: break-word;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        flex-direction: column;
+        width:500px;
+    }
+    .commentsContainerVideos{
+        display: flex;
+        text-align: left;
+        word-wrap: break-word;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        flex-direction: column;
+        width:500px;
+        margin-left:100px;
+    }
+    .generalCommentContainer{
+        width:600px;
+        margin-left:200px;
+    }
+    .commentsContainer:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    
+    .commentsAuthor {
+        color: tomato;
+    }
+    
+    .likesVideos {
+        text-align: center;
+        width: 40px;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    
+    .likesVideosH3 {
+        margin-right: 110px !important;
+    }
+    
+    .likes {
+        text-align: center;
+        width: 10px;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+    
+    .svgs {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        fill: black;
+        margin-left:750px;
+    }
+    
+    .svgs svg:active {
+        fill: red;
+    }
+    
+    .svgsImage {
+        cursor: pointer;
+    }
+    
+    .commentNumber {
+        margin-left: 5px;
+    }
+    
+    .generalPost{
+        display:flex;
+    }
+    .commentsContainerVideos{
+        text-align:left;
+        
+    
+    }
+  }
+  
+
+
+  @media (min-width: 350px) and (max-width: 600px) {
+
+    .general {
+        display: flex;
+        justify-content: center;
+        flex-direction:column;
+    }
+    
+    .postImg {
+        width: 300px;
+        height: auto;
+        object-fit: contain;
+        
+    }
+    
+    .mainContainer {
+        width: auto;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    
+    .MainHeading {
+        margin-top: 30px;
+    }
+    
+    .title {
+       width: 300px;
+        text-align:center;
+    }
+    
+    .generalPostContainer {
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items:center;
+        background: rgb(74, 68, 68);
+        margin-bottom: 100px;
+        width: 350px;
+        border-radius: 15px;
+        transition: box-shadow 0.3s ease-in-out;
+        text-align: center;
+        
+    }
+    
+    .postContainer {
+        display: flex;
+        flex-direction:column;
+        width: 300px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: center;
+    }
+   
+    
+    .generalPostContainer:hover {
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+    }
+    
+    .subredditSidebar {
+        margin-left:0px;        
+    }
+
+    
+    .authorLink {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 300px;
+    }
+    
+    .authorLink a {
+        text-align:center;
+    }
+    
+    .description {
+        width: 300px;
+        margin-right:450px;
+    }
+    
+    .postComments {
+        text-align: right;
+    }
+    
+    .commentsContainer {
+        display: flex;
+        text-align: left;
+        word-wrap: break-word;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        flex-direction: column;
+        width:300px;
+    }
+    .commentsContainerVideos{
+        display: flex;
+        text-align: left;
+        padding-top: 20px;
+        word-wrap: break-word;
+        transition: box-shadow 0.3s ease-in-out;
+        flex-direction: column;
+        width:300px;
+    }
+    .generalCommentContainer{
+        width:300px;
+        margin-left:10px;
+    }
+    .commentsContainer:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    
+    .commentsAuthor {
+        color: tomato;
+    }
+    
+    .likesVideos {
+        text-align: center;
+        width: 40px;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    
+    .likesVideosH3 {
+        margin-right: 110px !important;
+    }
+    
+    .likes {
+        text-align: center;
+        width: 10px;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+    
+    .svgs {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        fill: black;
+        margin-left:250px;
+    }
+    
+    .svgs svg:active {
+        fill: red;
+    }
+    
+    .svgsImage {
+        cursor: pointer;
+    }
+    
+    .commentNumber {
+        margin-left: 5px;
+    }
+    
+    .generalPost{
+        display:flex;
+        flex-direction:column;
+    }
+    .commentsContainerVideos{
+        text-align:left;
+        word-wrap: break-word;
+        
+    
+    }
+  }
+
+
+  @media (max-width: 349px){
+ 
+    .general {
+        display: flex;
+        justify-content: center;
+        flex-direction:column;
+    }
+    
+    .postImg {
+        width: 200px;
+        height: auto;
+        object-fit: contain;
+        margin-left:15px;
+        
+    }
+    
+    .mainContainer {
+        width: auto;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    
+    .MainHeading {
+        margin-top: 30px;
+    }
+    
+    .title {
+       width: 250px;
+        text-align:center;
+    }
+    
+    .generalPostContainer {
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items:center;
+        background: rgb(74, 68, 68);
+        margin-bottom: 100px;
+        width: 250px;
+        border-radius: 15px;
+        transition: box-shadow 0.3s ease-in-out;
+        text-align: center;
+        
+    }
+    
+    .postContainer {
+        display: flex;
+        flex-direction:column;
+        width: 250px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: center;
+    }
+   
+    
+    .generalPostContainer:hover {
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+    }
+    
+    .subredditSidebar {
+        margin-left:0px;        
+    }
+
+    
+    .authorLink {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 250px;
+    }
+    
+    .authorLink a {
+        text-align:center;
+    }
+    
+    .description {
+        width: 250px;
+        margin-right:450px;
+    }
+    
+    .postComments {
+        text-align: right;
+    }
+    
+    .commentsContainer {
+        display: flex;
+        text-align: left;
+        word-wrap: break-word;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        flex-direction: column;
+        width:200px;
+    }
+    .commentsContainerVideos{
+        display: flex;
+        text-align: left;
+        word-wrap: break-word;
+        padding-top: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        flex-direction: column;
+        width:200px;
+    }
+    .generalCommentContainer{
+        width:250px;
+        margin-left:10px;
+    }
+    .commentsContainer:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    
+    .commentsAuthor {
+        color: tomato;
+    }
+    
+    .likesVideos {
+        text-align: center;
+        width: 40px;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    
+    .likesVideosH3 {
+        margin-right: 110px !important;
+    }
+    
+    .likes {
+        text-align: center;
+        width: 10px;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+    
+    .svgs {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        fill: black;
+        margin-left:175px;
+    }
+    
+    .svgs svg:active {
+        fill: red;
+    }
+    
+    .svgsImage {
+        cursor: pointer;
+    }
+    
+    .commentNumber {
+        margin-left: 5px;
+    }
+    
+    .generalPost{
+        display:flex;
+        flex-direction:column;
+    }
+    .commentsContainerVideos{
+        text-align:left;
+        
+    
+    }
+  }
