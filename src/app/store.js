@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import searchReducer from '../features/search/searchSlice'
-import postsReducer from "../features/posts/postsSlice";
-import commentsReducer from "../features/comments/commentsSlice";
-import subredditsReducer from "../features/subreddits/subredditsSlice";
+import searchReducer from '../components/search/searchSlice'
+import postsReducer from "../components/posts/postsSlice";
+import commentsReducer from "../components/comments/commentsSlice";
+import subredditsReducer from "../components/subreddits/subredditsSlice";
 
 export const store = configureStore({
     reducer:
