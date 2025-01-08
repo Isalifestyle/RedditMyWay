@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchPopularPosts, fetchComments, fetchPostsBySubreddit } from '../../hooks/useFetchPosts';
 import { selectAllPosts, getPostsStatus, getPostsError, clearSelectedSubreddit, isSelectedSubreddit } from './postsSlice';
 import { availablePopularComments, getPopularCommentsStatus, getSubredditCommentsStatus } from '../comments/commentsSlice';
-import { SubredditSidebar } from '../../features/subreddits/subredditsList';
+import { SubredditSidebar } from '../../components/subreddits/subredditsList';
 import { selectSubredditPosts } from '../subreddits/subredditsSlice';
 import { SearchBar } from '../search/SearchBar';
 import { useSearch } from '../../SearchContext';

@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { SearchProvider } from "../src/SearchContext";
-import { Posts } from './features/posts/Posts';
+import { Posts } from './components/posts/Posts';
 function App() {
   return (
     <>
