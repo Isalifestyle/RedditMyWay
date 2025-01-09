@@ -9,6 +9,7 @@ import { clearPopularComments, clearSubredditComments } from '../comments/commen
 import { VideoPlayer } from '../Video_Player/videoPlayer';
 import {SkeletonPost} from '../skeletonPost/skeletonPost';
 import PostImage, { imagePost } from '../imagePost/imagePost';
+import { Link } from "react-router-dom";
 
 
 export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubreddit, handleClearSubreddit }) => 
@@ -24,6 +25,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
     const subredditCommentsClear = useSelector(clearSubredditComments)
     const [playingVideoId, setPlayingVideoId] = useState(null);
     const subredditCommentStatus = useSelector(getSubredditCommentsStatus);
+
 
 
     useEffect(() => {
@@ -81,12 +83,16 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                 <div className = {styles.subredditBar}>
                         {subreddits.map((subreddit) => (
                             <React.Fragment key={subreddit.id}>
-                                <div className = {styles.sidebar} key = {subreddit.id} onClick = {() => onSubredditClick(subreddit.display_name)}>
+                                    <Link 
+                                        to={`/popularPosts/${subreddit.display_name}`} 
+                                        className={styles.sidebar} 
+                                        onClick={() => onSubredditClick(subreddit.display_name)}
+                                    >
                                     <img styles = {styles.sidebar} src = {subreddit.icon_img || 'https://www.redditinc.com/assets/images/site/reddit-logo.png' } 
                                         alt = {subreddit.display_name} 
                                         />
                                     <p className = {styles.pwrap}>{subreddit.display_name_prefixed}</p>
-                                </div>
+                                    </Link>
                                 <hr className = {styles.customLine}/>
                             </React.Fragment>
                         ))}
@@ -203,7 +209,7 @@ export const SubredditSidebar = ({ onSubredditClick, subredditPosts,selectedSubr
                                             )))}</div>
                             </div> }
                             
-                    
+                           
                                 </div>
                                 )}
                             )} 

@@ -13,6 +13,7 @@ import { clearPopularComments, clearSubredditComments } from '../comments/commen
 import { VideoPlayer } from '../Video_Player/videoPlayer';
 import { SkeletonPost } from "../skeletonPost/skeletonPost";
 import PostImage, { imagePost } from '../imagePost/imagePost';
+import { useNavigate } from 'react-router-dom'; 
 
 export const Posts = () =>
     {
@@ -31,7 +32,7 @@ export const Posts = () =>
     const [playingVideoId, setPlayingVideoId] = useState(null);
     const subredditCommentStatus = useSelector(getSubredditCommentsStatus);
     const popularCommentsStatus = useSelector(getPopularCommentsStatus)
-
+    const navigate = useNavigate();
 
     
     const [selectedSubreddit, setSelectedSubreddit] = useState(false);
@@ -78,6 +79,7 @@ export const Posts = () =>
     const handleClearSubreddit = () =>
     {
         setSelectedSubreddit('');
+        navigate('/popularPosts');
     }
 
     const filteredPosts = (userInput && selectedSubreddit === false )
