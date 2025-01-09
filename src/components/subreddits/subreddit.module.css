@@ -205,6 +205,20 @@
     outline: 2px solid #a98ae1;
     outline-offset: 2px;
   }
+  /* Remove the blue underline and default color */
+.sidebar {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherit color from the parent or specify a custom color */
+  }
+  
+  /* Optional: Add your custom styles for when the link is hovered or active */
+  .sidebar:hover {
+    color: inherit; /* Keep the text color as is on hover, or set a different color */
+  }
+  
+  .sidebar:active {
+    color: inherit; /* Keep the text color on active click */
+  }
 }
 
 
@@ -419,6 +433,20 @@
         outline: 2px solid #a98ae1;
         outline-offset: 2px;
       }
+      /* Remove the blue underline and default color */
+.sidebar {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherit color from the parent or specify a custom color */
+  }
+  
+  /* Optional: Add your custom styles for when the link is hovered or active */
+  .sidebar:hover {
+    color: inherit; /* Keep the text color as is on hover, or set a different color */
+  }
+  
+  .sidebar:active {
+    color: inherit; /* Keep the text color on active click */
+  }
 }
 
 
@@ -633,6 +661,20 @@
         outline: 2px solid #a98ae1;
         outline-offset: 2px;
       }
+      /* Remove the blue underline and default color */
+.sidebar {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherit color from the parent or specify a custom color */
+  }
+  
+  /* Optional: Add your custom styles for when the link is hovered or active */
+  .sidebar:hover {
+    color: inherit; /* Keep the text color as is on hover, or set a different color */
+  }
+  
+  .sidebar:active {
+    color: inherit; /* Keep the text color on active click */
+  }
 }
 
 
@@ -868,6 +910,20 @@
         outline: 2px solid #a98ae1;
         outline-offset: 2px;
       }
+      /* Remove the blue underline and default color */
+.sidebar {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherit color from the parent or specify a custom color */
+  }
+  
+  /* Optional: Add your custom styles for when the link is hovered or active */
+  .sidebar:hover {
+    color: inherit; /* Keep the text color as is on hover, or set a different color */
+  }
+  
+  .sidebar:active {
+    color: inherit; /* Keep the text color on active click */
+  }
 
   }
 
@@ -1106,6 +1162,20 @@
         outline: 2px solid #a98ae1;
         outline-offset: 2px;
       }
+      /* Remove the blue underline and default color */
+.sidebar {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherit color from the parent or specify a custom color */
+  }
+  
+  /* Optional: Add your custom styles for when the link is hovered or active */
+  .sidebar:hover {
+    color: inherit; /* Keep the text color as is on hover, or set a different color */
+  }
+  
+  .sidebar:active {
+    color: inherit; /* Keep the text color on active click */
+  }
 
 }
 
@@ -1347,6 +1417,20 @@
         outline: 2px solid #a98ae1;
         outline-offset: 2px;
       }
+      /* Remove the blue underline and default color */
+.sidebar {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherit color from the parent or specify a custom color */
+  }
+  
+  /* Optional: Add your custom styles for when the link is hovered or active */
+  .sidebar:hover {
+    color: inherit; /* Keep the text color as is on hover, or set a different color */
+  }
+  
+  .sidebar:active {
+    color: inherit; /* Keep the text color on active click */
+  }
   }
 
 
@@ -1602,6 +1686,20 @@
         outline: 2px solid #a98ae1;
         outline-offset: 2px;
       }
+      /* Remove the blue underline and default color */
+.sidebar {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherit color from the parent or specify a custom color */
+  }
+  
+  /* Optional: Add your custom styles for when the link is hovered or active */
+  .sidebar:hover {
+    color: inherit; /* Keep the text color as is on hover, or set a different color */
+  }
+  
+  .sidebar:active {
+    color: inherit; /* Keep the text color on active click */
+  }
 }
 
 
@@ -1869,5 +1967,19 @@
         width:150px;
         margin-left:100px;
       }
+      /* Remove the blue underline and default color */
+.sidebar {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherit color from the parent or specify a custom color */
+  }
+  
+  /* Optional: Add your custom styles for when the link is hovered or active */
+  .sidebar:hover {
+    color: inherit; /* Keep the text color as is on hover, or set a different color */
+  }
+  
+  .sidebar:active {
+    color: inherit; /* Keep the text color on active click */
+  }
     
 }
