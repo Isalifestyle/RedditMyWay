@@ -1,3 +1,5 @@
+global.TextEncoder = require('util').TextEncoder;
+global.TextDecoder = require('util').TextDecoder;
 import { setupServer } from 'msw/node';
 import { handlers } from './handlers';  // Your msw handlers
 
