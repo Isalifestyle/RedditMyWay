@@ -18,7 +18,6 @@ A user-friendly web application to explore the latest trends and specific subred
 - **Explore Popular Posts**: View the most popular posts from Reddit.
 - **Browse Subreddits**: Dive into individual subreddits and explore posts tailored to your interests.
 - **Responsive and Interactive**: Designed for a seamless browsing experience.
-- **Built with Modern Tech**: Utilizes React, Redux Toolkit, React Router DOM, and Dash.js for a robust and dynamic user interface.
 
 ## Technologies Used
 - **React**: For building the user interface.
@@ -40,7 +39,7 @@ A user-friendly web application to explore the latest trends and specific subred
 
 2. Install dependencies:
     ```bash
-    cd halllalify
+    cd redditmyway
     npm install
     ```
 ---
